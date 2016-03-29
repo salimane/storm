@@ -1,5 +1,7 @@
 language: java
-sudo: false
+sudo: required
+services:
+  - docker
 cache:
   directories:
     - "$HOME/.m2/repository"
@@ -10,7 +12,13 @@ script:
   - mvn test
   - jdk_switcher use oraclejdk7
   - mvn test
-before_deploy: bin/build-release.sh
+before_deploy:
+  - bin/build-release.sh
+  - make images
+  - make images JAVA_PRODUCT_VERSION=8
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - make push
+  - make push JAVA_PRODUCT_VERSION=8
 
 matrix:
   fast_finish: true
