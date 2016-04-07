@@ -10,8 +10,7 @@ ENV TARGET_JAVA_HOME ${JAVA_PRODUCT_VERSION:+/usr/lib/jvm/java-$JAVA_PRODUCT_VER
 ENV JAVA_HOME ${TARGET_JAVA_HOME:-/usr/lib/jvm/java-7-openjdk-amd64}
 ENV JAVA_PRODUCT_VERSION ${JAVA_PRODUCT_VERSION:-7}
 
-# Add mesosphere, openjdk 8 repo
-# install jdk 7 and 8
+# Add mesosphere
 # install mesos version, build arg, MESOS_RELEASE with a default value
 ARG MESOS_RELEASE=0.28.0
 RUN DISTRO=$(lsb_release -is | tr "[:upper:]" "[:lower:]") && \
