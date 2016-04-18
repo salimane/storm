@@ -19,7 +19,7 @@ RUN DISTRO=$(lsb_release -is | tr "[:upper:]" "[:lower:]") && \
 	apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF && \
 	apt-get -y update && \
 	apt-get -y install mesos=`apt-cache madison mesos | grep " ${MESOS_RELEASE}" | head -1 | awk '{print $3}'` && \
-	apt-get clean && rm -rf /var/lib/apt/lists/*
+	apt-get clean
 
 # set build arg STORM_RELEASE, MIRROR with defaults values
 ARG STORM_RELEASE=0.10.0
